@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" />
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="register">
+            <div class="form">
+                <div class="register">
+                    <span class="title">Register</span>
+                    <form action="/register" method="post">
+                        {% with messages = get_flashed_messages(category_filter=['register']) %}
+                        <!-- declare a variable called messages -->
+                        {% if messages %}
+                        <!-- check if there are any messages -->
+                        {% for message in messages %}
+                        <!-- loop through the messages -->
+                        <p class="text-danger">{{message}}</p> <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                        <div class="input-field">
+                            <input type="text" class="form-control mb-2" name="first_name" aria-describedby="first_name" placeholder="First Name">
+                            <i class="uil uil-user"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" class="form-control mb-2" name="last_name" aria-describedby="last_name" placeholder="Last Name">
+                            <i class="uil uil-user"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="email" class="form-control mb-2" name="email" aria-describedby="emailHelp" placeholder="Enter your email">
+                            <i class="uil uil-envelope"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type='password' name='password' class="form-control mb-4"
+                                placeholder="Enter your password">
+                            <i class="uil uil-lock"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type='password' name='password_confirmation' class="form-control mb-4" placeholder="Confirm your password">
+                            <i class="uil uil-lock"></i>
+                        </div>
+                </div>
+            </div>
+            <div class="login_button">
+                <input type='submit' id="register" value='Register'>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
