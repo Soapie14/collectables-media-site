@@ -9,7 +9,7 @@ import re
 bcrypt = Bcrypt(app)
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
-DB = "beltexam" 
+DB = "project" 
 
 class User:
     

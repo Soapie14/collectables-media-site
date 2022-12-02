@@ -133,3 +133,7 @@ body {
     background-color: rebeccapurple;
     cursor: pointer;
 }
+
+p {
+    font-size: x-small;
+}

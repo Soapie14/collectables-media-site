@@ -6,15 +6,14 @@ from flask_bcrypt import Bcrypt
 from flask_app.models import user
 import re
 
-DB = "beltexam" 
+DB = "project" 
 
 class Item:
     def __init__(self, item):
         self.id= item["id"]
-        self.location= item["location"]
+        self.name= item["name"]
         self.description= item["description"]
         self.date= item["date"]
-        self.amount= item["amount"]
         self.user = None
         
     #create new valid item
@@ -24,7 +23,7 @@ class Item:
             return False
         
                 
-        query = """INSERT INTO items (location, description, date, amount, user_id) VALUES (%(location)s, %(description)s, %(date)s, %(amount)s, %(user_id)s);"""
+        query = """INSERT INTO items (name, description, date, amount, user_id) VALUES (%(name)s, %(description)s, %(date)s, %(amount)s, %(user_id)s);"""
         item_id = connectToMySQL(DB).query_db(query, item_dict)
         item = cls.get_by_id(item_id)
 
@@ -35,7 +34,7 @@ class Item:
     def get_by_id(cls, item_id):
         print(f"get item by id {item_id}")
         data = {"id": item_id}
-        query = """SELECT items.id, items.created_at, items.updated_at, location, description, date, amount,
+        query = """SELECT items.id, items.created_at, items.updated_at, name, description, date, amount,
                     users.id as user_id, first_name, last_name, email, users.created_at as uc, users.updated_at as uu
                     FROM items
                     JOIN users on users.id = items.user_id
@@ -66,7 +65,7 @@ class Item:
     def get_all(cls):
         # Get all items, and the user info for the creators
         query = """SELECT 
-                    items.id, items.created_at, items.updated_at, location, description, date, amount,
+                    items.id, items.created_at, items.updated_at, name, description, date,
                     users.id as user_id, first_name, last_name, email, users.created_at as uc, users.updated_at as uu
                     FROM items
                     JOIN users on users.id = items.user_id;"""
@@ -113,7 +112,7 @@ class Item:
         
         # Update the data in the database.
         query = """UPDATE items
-                    SET location = %(location)s, description = %(description)s, date=%(date)s, amount = %(amount)s
+                    SET name = %(name)s, description = %(description)s, date=%(date)s, amount = %(amount)s
                     WHERE id = %(id)s;"""
         result = connectToMySQL(DB).query_db(query,item_dict)
         item = cls.get_by_id(item_dict["id"])
@@ -134,8 +133,8 @@ class Item:
     def is_valid(item_dict):
         valid = True
         flash_string = " field is required and must be at least 3 characters."
-        if len(item_dict["location"]) < 3:
-            flash("location " + flash_string)
+        if len(item_dict["name"]) < 3:
+            flash("name " + flash_string)
             valid = False
         if len(item_dict["description"]) < 3:
             flash("Description " + flash_string)
@@ -144,9 +143,6 @@ class Item:
         if len(item_dict["date"]) <= 0:
             flash("Date is required.")
             valid = False
-            
-        if len(item_dict["amount"]) <= 0:
-            flash("Did you actually see a sasquatch? How many?")
-            valid = False
+
 
         return valid
