@@ -23,7 +23,7 @@ class Item:
             return False
         
                 
-        query = """INSERT INTO items (name, description, date, amount, user_id) VALUES (%(name)s, %(description)s, %(date)s, %(amount)s, %(user_id)s);"""
+        query = """INSERT INTO items (name, description, date, user_id) VALUES (%(name)s, %(description)s, %(date)s, %(user_id)s);"""
         item_id = connectToMySQL(DB).query_db(query, item_dict)
         item = cls.get_by_id(item_id)
 
@@ -34,7 +34,7 @@ class Item:
     def get_by_id(cls, item_id):
         print(f"get item by id {item_id}")
         data = {"id": item_id}
-        query = """SELECT items.id, items.created_at, items.updated_at, name, description, date, amount,
+        query = """SELECT items.id, items.created_at, items.updated_at, name, description, date, 
                     users.id as user_id, first_name, last_name, email, users.created_at as uc, users.updated_at as uu
                     FROM items
                     JOIN users on users.id = items.user_id
@@ -63,21 +63,19 @@ class Item:
     
     @classmethod
     def get_all(cls):
-        # Get all items, and the user info for the creators
+
         query = """SELECT 
-                    items.id, items.created_at, items.updated_at, name, description, date,
+                    items.id, items.created_at, items.updated_at, description, name, date,
                     users.id as user_id, first_name, last_name, email, users.created_at as uc, users.updated_at as uu
                     FROM items
                     JOIN users on users.id = items.user_id;"""
         item_data = connectToMySQL(DB).query_db(query)
 
-        # Make a list to hold item objects to return
+
         items = []
 
-        # Iterate through the list of item dictionaries
+        # Iterate through the list of recipe dictionaries and convert data into object
         for item in item_data:
-
-            # convert data into a item object
             item_obj = cls(item)
 
             # convert joined user data into a user object
@@ -87,6 +85,7 @@ class Item:
                     "first_name": item["first_name"],
                     "last_name": item["last_name"],
                     "email": item["email"],
+                    "password": None,
                     "created_at": item["uc"],
                     "updated_at": item["uu"]
                 }
@@ -112,7 +111,7 @@ class Item:
         
         # Update the data in the database.
         query = """UPDATE items
-                    SET name = %(name)s, description = %(description)s, date=%(date)s, amount = %(amount)s
+                    SET name = %(name)s, description = %(description)s, date=%(date)s
                     WHERE id = %(id)s;"""
         result = connectToMySQL(DB).query_db(query,item_dict)
         item = cls.get_by_id(item_dict["id"])
