@@ -8,7 +8,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
+#body {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -136,4 +136,20 @@ body {
 
 p {
     font-size: x-small;
+}
+
+/* Dashboard */
+
+body.body_dashboard {
+    background-image: linear-gradient(to right, rgb(201, 131, 220), rgb(0, 4, 255));  
+}
+
+#nav_bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#right_links {
+    
 }

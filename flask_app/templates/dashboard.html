@@ -1,29 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-        <!-- CSS -->
-        <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" />
+    <!-- 
+    Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-        <!-- ICONS -->
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" />
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
-<body>
-    <ul>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/create">Report a Sighting</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/logout">Log Out</a>
-        </li>
-    </ul>
 
-    <h1><u>Welcome {{user.first_name}} {{user.last_name}}</u></h1>
-    <div class="mb-3 p-3">
-    <h2>Sasquatch Websighting</h2>
+<body class="body_dashboard">
+    <div class="nav_bar">
+
+        <div class="right_links">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Create Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Log Out</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="left_logo">
+            <h1 class="logo">Collect-em'-all</h1>
+        </div>
     </div>
+
+
+
+    <div class="welcome">
+            <h1><u>Welcome {{user.first_name}} {{user.last_name}}</u></h1>
+        </div>
+
+
+        <div class="posts">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-white">
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-white">
+                    {% for item in items: %}
+                    <tr>
+                        <td>In {{item.location}} and was reported by: {{item.user.first_name}} {{item.user.last_name}}</td>
+                        <td>{{item.date}}</td>
+    
+                        <td>
+                            <a href="/items/{{item.id}}">View details</a>
+                            <!--edit and delete conditional-->
+                            {% if item.user.id == user.id: %}
+                            <a href="/items/edit/{{item.id}}">Edit</a>
+                            <a href="/items/delete/{{item.id}}">Delete</a>
+                            {% endif %}
+                            
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 </body>
+
 </html>
