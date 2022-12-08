@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +22,7 @@
 </head>
 
 <body class="body_create">
-    
+
     <div class="nav_bar">
 
         <div class="left_logo">
@@ -43,5 +44,45 @@
         </div>
     </div>
 
+    <div class="create">
+        <div class="create_inputs">
+                <form action='/create' method='post'>
+                    {% with messages = get_flashed_messages(category_filter=['item']) %}
+                    <!-- declare a variable called messages -->
+                    {% if messages %}
+                    <!-- check if there are any messages -->
+                    {% for message in messages %}
+                    <!-- loop through the messages -->
+                    <p class="text-danger">{{message}}</p> <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+
+                    <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                <div class="mb-4 p-2">
+                    <label for='name' class="mb-2">Name:</label>
+                    <input type='text' name='name'>
+                </div>
+                <div class="mb-4 p-2">
+                    <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg">
+                    <div id="display-image"></div>
+                </div>
+                <div class="mb-4 p-2">
+                    <label for="date" class="mb-2">Year:</label>
+                    <input name="date" type="number" min="1800" max="2099" step="1" value="2022" />
+                </div>
+                <div class="mb-4 p-2">
+                    <label for='description'>Description:</label>
+                    <textarea class="form-control mb-2" name="description" rows="3"></textarea>
+                </div>
+        </div>
+
+        <div class="create_button">
+            <div class="p-3"> <input type='submit' class="btn btn-primary" value='Create Post'></div>
+        </div>
+        </form>
+    </div>
+
 </body>
+
 </html>

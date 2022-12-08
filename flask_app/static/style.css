@@ -192,3 +192,28 @@ p {
 .body_create {
     background-image: linear-gradient(to right, rgb(201, 131, 220), rgb(0, 4, 255));  
 }
+
+.create {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    max-width: fit-content;
+    padding: 8px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+    flex-direction: column;
+}
+
+#display-image{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    background-position: center;
+    background-size: cover;
+}
+
+.create_button {
+    flex-direction: column;
+}
