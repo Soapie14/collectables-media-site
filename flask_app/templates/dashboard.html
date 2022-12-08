@@ -14,6 +14,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}" />
 
+    <!-- Javascript -->
+    <script src="{{url_for('static', filename='/js/script.js')}}" async></script>
+
     <!-- ICONS -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
@@ -21,61 +24,61 @@
 <body class="body_dashboard">
     <div class="nav_bar">
 
+        <div class="left_logo">
+            <h1 class="logo">Collect-em'-all</h1>
+        </div>
+
         <div class="right_links">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Create Post</a>
+                    <a class="nav-link active" aria-current="page" id="link_text" href="/create">Create Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profile Page</a>
+                    <a class="nav-link" id="link_text" href="#">Profile Page</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Log Out</a>
+                    <a class="nav-link" id="link_text" href="/logout">Log Out</a>
                 </li>
             </ul>
-        </div>
-
-        <div class="left_logo">
-            <h1 class="logo">Collect-em'-all</h1>
         </div>
     </div>
 
 
 
     <div class="welcome">
-            <h1><u>Welcome {{user.first_name}} {{user.last_name}}</u></h1>
-        </div>
+        <h3 class="welcome_text"><u>Welcome {{user.first_name}} {{user.last_name}}</u></h1>
+    </div>
 
 
-        <div class="posts">
-            <table class="table table-hover">
-                <thead>
-                    <tr class="text-white">
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="text-white">
-                    {% for item in items: %}
-                    <tr>
-                        <td>In {{item.location}} and was reported by: {{item.user.first_name}} {{item.user.last_name}}</td>
-                        <td>{{item.date}}</td>
-    
-                        <td>
-                            <a href="/items/{{item.id}}">View details</a>
-                            <!--edit and delete conditional-->
-                            {% if item.user.id == user.id: %}
-                            <a href="/items/edit/{{item.id}}">Edit</a>
-                            <a href="/items/delete/{{item.id}}">Delete</a>
-                            {% endif %}
-                            
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+    <div class="posts">
+        <table class="table table-hover">
+            <thead>
+                <tr class="text-white">
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-white">
+                {% for item in items: %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.description}}</td>
+
+                    <td>
+                        <a href="/items/{{item.id}}">View details</a>
+                        <!--edit and delete conditional-->
+                        {% if item.user.id == user.id: %}
+                        <a href="/items/edit/{{item.id}}">Edit</a>
+                        <a href="/items/delete/{{item.id}}">Delete</a>
+                        {% endif %}
+                        
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>

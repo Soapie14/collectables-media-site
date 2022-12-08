@@ -121,7 +121,7 @@
 
 /* Registration page */
 
-#register{
+/* #register{
     border: none;
     margin-bottom: 3px;
     padding: 6px;
@@ -132,7 +132,7 @@
     border-radius: 6px;
     background-color: rebeccapurple;
     cursor: pointer;
-}
+} */
 
 p {
     font-size: x-small;
@@ -140,16 +140,55 @@ p {
 
 /* Dashboard */
 
-body.body_dashboard {
+.body_dashboard {
     background-image: linear-gradient(to right, rgb(201, 131, 220), rgb(0, 4, 255));  
 }
 
-#nav_bar {
+.nav_bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.left_logo{
+    height: auto;
+    margin-top: 10px;
+    margin-left: 10px;
+    max-width:  330px;
+    padding: 4px;
+    width: 50%;
+    background: rgb(255, 255, 255);
+    border-radius: 13px;
+    box-shadow: 0 5px 10px rgba(0, 0, 1, 1);
+}
+
+.logo {
+    font-size: 250%;
+}
+
+.right_links {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#right_links {
-    
+#link_text {
+    color: rgb(0, 0, 0);
+    text-decoration: underline;
+}
+
+.welcome {
+    margin-top: 10px;
+}
+
+.welcome-text {
+    font-size: small;
+}
+
+
+/* Create post */
+
+.body_create {
+    background-image: linear-gradient(to right, rgb(201, 131, 220), rgb(0, 4, 255));  
 }
