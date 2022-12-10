@@ -53,6 +53,7 @@ class Item:
                     "first_name": result["first_name"],
                     "last_name": result["last_name"],
                     "email": result["email"],
+                    "password": None,
                     "created_at": result["uc"],
                     "updated_at": result["uu"]
                 }

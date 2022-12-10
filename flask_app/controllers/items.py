@@ -31,7 +31,7 @@ def create_item():
 def item_detail(item_id):
     user = User.get_by_id(session["user_id"])
     item = Item.get_by_id(item_id)
-    return render_template("view.html", user=user, item=item)
+    return render_template("details.html", user=user, item=item)
 #may need to add similar to recipe=recipe after user=user
 
 @app.route("/items/edit/<int:item_id>")
