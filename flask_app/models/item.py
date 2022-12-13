@@ -116,9 +116,15 @@ class Item:
                     WHERE id = %(id)s;"""
         result = connectToMySQL(DB).query_db(query,item_dict)
         item = cls.get_by_id(item_dict["id"])
-        
+        print("****************")
+        print(item)
         return item
     
+    @classmethod
+    def search(cls, item_dict, session_dict):
+        item = cls.get_by_id(item_dict["id"])
+        query = "SELECT * FROM items WHERE "
+        
     
     @classmethod
     def delete_item_by_id(cls, item_id):
@@ -146,3 +152,12 @@ class Item:
 
 
         return valid
+    
+    
+    
+    
+# class SearchForm(FlaskForm):
+#     searched = StringField("Searched", validators=[DataRequired()])
+#     submit = SubmitField("submit")
+    
+    

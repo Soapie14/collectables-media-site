@@ -22,7 +22,7 @@ def register():
     valid_user = User.create_valid_user(request.form)
 
     if not valid_user:
-        return redirect("/")
+        return redirect("/register_here")
     
     session["user_id"] = valid_user.id
     

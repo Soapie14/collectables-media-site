@@ -47,9 +47,12 @@
 
 
 
-    <div class="container border border-secondary p-2">
+    <div class="container border border-secondary p-2" id="container">
         <div class="flex-container">
             <h2 class="d-flex justify-content-center">{{item.name}}</h2>
+            <div class="image">
+                <div id="display-image"></div>
+            </div>
             <p><u>Description:</u></p>
             <p class="majority-width">{{item.description}}</p>
         </div>
@@ -61,6 +64,17 @@
         <div class="flex-container">
             <p><u>Posted by:</u></p>
             <p class="majority-width">{{item.user.first_name}}</p>
+        </div>
+        <div class="links">
+            <!--edit and delete conditional-->
+            {% if item.user.id == user.id: %}
+            <div class="edit">
+                <a href="/items/edit/{{item.id}}">Edit</a>
+            </div>
+            <div class="delete">
+                <a href="/items/delete/{{item.id}}">Delete</a>
+            </div>
+            {% endif %}
         </div>
     </div>
 

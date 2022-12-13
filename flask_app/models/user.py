@@ -87,23 +87,23 @@ class User:
 
         if len(user["first_name"]) < 2:
             valid = False
-            flash("First name must be at least 2 characters.")
+            flash("First name must be at least 2 characters.", "register")
             
         if len(user["last_name"]) < 2:
             valid = False
-            flash("Last name must be at least 2 characters.") 
+            flash("Last name must be at least 2 characters.", "register") 
             
         if not EMAIL_REGEX.match(user['email']): 
-            flash("Invalid email address")
+            flash("Invalid email address", "register")
             valid = False
             
-        if not user["password"] == user["confirm_password"]:
-            flash("Passwords must match.")
+        if not user["password"] == user["password_confirmation"]:
+            flash("Passwords must match.", "password")
             valid = False
 
         email_already_has_account = User.get_by_email(user["email"])
         if email_already_has_account:
-            flash("An account with that email already exists, please log in.")
+            flash("An account with that email already exists, please log in.", "password")
             valid = False
 
         return valid

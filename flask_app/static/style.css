@@ -8,7 +8,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-#body {
+.body {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -121,18 +121,9 @@
 
 /* Registration page */
 
-/* #register{
-    border: none;
-    margin-bottom: 3px;
-    padding: 6px;
-    color: #fff;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    border-radius: 6px;
-    background-color: rebeccapurple;
-    cursor: pointer;
-} */
+#warning {
+    color: red;
+}
 
 p {
     font-size: x-small;
@@ -216,4 +207,82 @@ p {
 
 .create_button {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+/* edit post */
+
+#container {
+    position: relative;
+    max-width:  430px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.links {
+    display: flex;
+    justify-content: end;
+    font-size: small;
+}
+
+.edit {
+    margin-right: 5px;
+}
+
+/* picture */
+
+/* .profile-pic {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}
+
+.file-upload {
+    display: none;
+}
+.circle {
+    border-radius: 1000px !important;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border: 8px solid rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 72px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.p-image {
+display: flex;
+top: 167px;
+right: 30px;
+color: #666666;
+transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.upload-button {
+font-size: 1.2em;
+}
+
+.upload-button:hover {
+transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+color: #999;
+} */
+
+
+.profile_body{
+    background-image: linear-gradient(to right, rgb(201, 131, 220), rgb(0, 4, 255));  
+}
+
