@@ -30,6 +30,7 @@
         </div>
 
 
+        <!-- NAVBAR  -->
         <div class="right_links">
             <ul class="nav justify-content-end">
                 <li class="nav-item">
@@ -45,9 +46,10 @@
         </div>
     </div>
 
+    <!-- Beginning log in/reg -->
     <div class="create">
         <div class="create_inputs">
-            <form action='/create/new' method='post'>
+            <form action='/create/new' method='post' enctype=multipart/form-data>
                 {% with messages = get_flashed_messages(category_filter=['item']) %}
                 <!-- declare a variable called messages -->
                 {% if messages %}
@@ -80,6 +82,7 @@
                 </div>
         </div>
 
+        <!-- create button  -->
         <div class="create_button">
             <div class="p-3"> <input type='submit' class="btn btn-primary" value='Create Post'></div>
         </div>
