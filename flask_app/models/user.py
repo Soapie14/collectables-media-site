@@ -129,7 +129,7 @@ class User:
                 valid = False
 
         if not valid:
-            flash("There is no one in our databse with that email")
+            flash("There is no one in our database with that email")
             return False
 
         return valid
